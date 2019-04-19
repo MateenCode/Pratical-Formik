@@ -5,10 +5,6 @@ import * as Yup from "yup";
 const PracticeForm = ({ values, errors, touched, isSubmitting }) => (
   <Form>
     <div>
-      {touched.email && errors.email && <p>{errors.email}</p>}
-      <Field type="email" name="email" placeholder="Email" />
-    </div>
-    <div>
       {touched.password && errors.password && <p>{errors.password}</p>}
       <Field type="password" name="password" placeholder="Password" />
     </div>
@@ -20,9 +16,19 @@ const PracticeForm = ({ values, errors, touched, isSubmitting }) => (
       <option value="free">Free</option>
       <option value="premium">Premium</option>
     </Field>
-    <button disabled={isSubmitting} type="submit">
-      Submit
-    </button>
+    {!errors.password && !errors.email && values.email ? (
+      <div>
+        <button disabled={isSubmitting} type="submit">
+          Submit
+        </button>
+      </div>
+    ) : (
+      <div>
+        <button disabled={isSubmitting} type="submit">
+          Review
+        </button>
+      </div>
+    )}
   </Form>
 );
 
