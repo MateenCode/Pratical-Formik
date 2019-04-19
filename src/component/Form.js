@@ -4,10 +4,19 @@ import * as Yup from "yup";
 
 const PracticeForm = ({ values, errors, touched, isSubmitting }) => (
   <Form>
+    {touched.email && values.email ? (
+      <div> Youre email is {values.email} </div>
+    ) : (
+      <div>
+        {touched.email && errors.email && <p>{errors.email}</p>}
+        <Field type="email" name="email" placeholder="Email" />
+      </div>
+    )}
     <div>
       {touched.password && errors.password && <p>{errors.password}</p>}
       <Field type="password" name="password" placeholder="Password" />
     </div>
+
     <label>
       <Field type="checkbox" name="newsletter" checked={values.newsletter} />
       Join our newsletter
